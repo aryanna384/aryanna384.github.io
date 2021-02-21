@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>博客搭建</title>
+    <url>/2021/02/21/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</url>
+    <content><![CDATA[<p>由于要开始找工作发现很多招聘信息中个人网页属于加分项，另外想凭借记录、分享学习内容来改掉拖延、沉迷游戏的问题（在疯狂肝塞尔达十天之后发现不能再这么下去了…）</p>
+<h2 id="hexo-安装"><a href="#hexo-安装" class="headerlink" title="hexo 安装"></a>hexo 安装</h2><ul>
+<li>下载 nodejs ，官网下载 mac 版本<br>要运行hexo，需要有Node.js运行时支持,nodejs是一个 javaScript 的运行环境，是通过JavaScript语言开发web服务端</li>
+<li>加速下载，配置镜像<br><code>npm install -g cnpm ---registry=https://registry.npm.taobao.org</code></li>
+<li>安装 hexo<br>#安装<br><code>cnpm install -g hexo-cli</code><br>#建立文件夹 InnaBlog，在文件夹内初始化<br><code>sudo hexo init </code><br>#启动博客，每次写文件之前先退出<br><code>hexo s</code></li>
+</ul>
+<h2 id="配置到-github"><a href="#配置到-github" class="headerlink" title="配置到 github"></a>配置到 github</h2><p>#安装<br><code>cnpm install --save hexo-deployer-git</code><br>#修改 Development，打开_config.yml在 Devolopment&gt;deploy 下添加：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">type: git</span><br><span class="line">repo: https:&#x2F;&#x2F;github.com&#x2F;aryanna384&#x2F;aryanna384.github.io</span><br><span class="line">branch: master</span><br></pre></td></tr></table></figure>
+<p>#每次修改 config 文件需要刷新一下<br><code>hexo g</code><br>#部署更新到远端<br><code>hexo d</code><br>结束之后会发现新建的仓出现了很多内容,在地址栏访问aryanna384.github.io就可以访问博客了</p>
+<h2 id="更换主题"><a href="#更换主题" class="headerlink" title="更换主题"></a>更换主题</h2><p>参见<a href="https://hexo.io/themes/">官方主题</a>，这个 blog 我从众选择了<a href="https://github.com/Shen-Yu/hexo-theme-ayer">ayer</a>并基于此进行了一些修改。</p>
+<h2 id="功能性设置"><a href="#功能性设置" class="headerlink" title="功能性设置"></a>功能性设置</h2><h3 id="index-新建页面"><a href="#index-新建页面" class="headerlink" title="index / 新建页面"></a>index / 新建页面</h3><p>这个设置在下载的主题的 <code>menu</code> 内，可以通过：</p>
+<figure class="highlight plain"><figcaption><span>new page about #创建新页面</span></figcaption><table><tr><td class="code"><pre><span class="line">#修改主题下的_config.yml</span><br><span class="line">menu:</span><br><span class="line">  关于我： &#x2F;about </span><br></pre></td></tr></table></figure>
+<h3 id="挖-坑"><a href="#挖-坑" class="headerlink" title="挖 坑"></a>挖 坑</h3><p>这里写一下想要实现的功能</p>
+<ul>
+<li>自定义鼠标，图片转 cur 文件，找到了一个网站，尝试了一下但没有成功，像素限制？</li>
+<li>每次都是本地写 markdown 上传不知道能不能在线编辑</li>
+<li>文章页面添加侧边栏功能</li>
+</ul>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://www.bilibili.com/video/BV1Yb411a7ty?t=1566">b站CodeSheep</a><br><a href="https://blog.csdn.net/sinat_37781304/article/details/82729029">hexo 搭建教程</a><br><a href="https://coder-programming.blog.csdn.net/article/details/106110729?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.control&dist_request_id=66601660-c684-4ba1-a8ee-defb8def61eb&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.control">设置标签、分类</a></p>
+]]></content>
+      <categories>
+        <category>web</category>
+      </categories>
+      <tags>
+        <tag>教程</tag>
+        <tag>笔记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2021/02/21/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Markdown——我的第一篇 blog</title>
+    <url>/2021/02/21/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/</url>
+    <content><![CDATA[<h2 id="MarkDown"><a href="#MarkDown" class="headerlink" title="MarkDown"></a>MarkDown</h2><h3 id="文本样式"><a href="#文本样式" class="headerlink" title="文本样式"></a>文本样式</h3><p><strong>加粗</strong><br><em>斜体</em><br> <strong><em>斜体加粗</em></strong><br><del>删除线</del></p>
+<h3 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h3><blockquote>
+<p>引用的内容<br>引用的内容</p>
+<blockquote>
+<p>嵌套的引用</p>
+</blockquote>
+</blockquote>
+<h3 id="分割线"><a href="#分割线" class="headerlink" title="分割线"></a>分割线</h3><h3 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h3><p><img src="https://image.baidu.com/search/detail?ct=503316480&z=0&ipn=d&word=%E6%A1%8C%E9%9D%A2&step_word=&hs=0&pn=50&spn=0&di=58850&pi=0&rn=1&tn=baiduimagedetail&is=0,0&istype=0&ie=utf-8&oe=utf-8&in=&cl=undefined&lm=undefined&st=undefined&cs=111713540,615806613&os=3275214250,2157200754&simid=3304861670,4081601877&adpicid=0&lpn=0&ln=498&fr=&fmq=1613893395592_R&fm=&ic=undefined&s=undefined&hd=undefined&latest=undefined&copyright=undefined&se=&sme=&tab=0&width=undefined&height=undefined&face=undefined&ist=&jit=&cg=&bdtype=0&oriquery=&objurl=https://gimg2.baidu.com/image_search/src=http://img.pconline.com.cn/images/upload/upc/tx/wallpaper/1212/10/c1/16491670_1355126816487.jpg&refer=http://img.pconline.com.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1616485409&t=8b5ba6a3ad5ba4770ab00136f16ddd8d&fromurl=ippr_z2C$qAzdH3FAzdH3F2_z&e3Brv5gstgj_z&e3Bv54_z&e3BvgAzdH3FkkfAzdH3Fp5rtv-cambb8bc_z&e3Bip4s&gsm=33&rpstart=0&rpnum=0&islist=&querylist=&force=undefined" alt="测试图片" title="猫·鼠标悬停显示"></p>
+<h3 id="超链接"><a href="#超链接" class="headerlink" title="超链接"></a>超链接</h3><p><a href="https://www.jianshu.com/p/191d1e21f7ed" title="title">参考</a></p>
+<h3 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h3><h4 id="无序列表"><a href="#无序列表" class="headerlink" title="无序列表"></a>无序列表</h4><ul>
+<li>列表</li>
+</ul>
+<ul>
+<li>列表</li>
+</ul>
+<ul>
+<li>列表</li>
+</ul>
+<h4 id="有序列表"><a href="#有序列表" class="headerlink" title="有序列表"></a>有序列表</h4><ol>
+<li>有序列表 1</li>
+<li>有序列表 2</li>
+</ol>
+<h4 id="列表嵌套"><a href="#列表嵌套" class="headerlink" title="列表嵌套"></a>列表嵌套</h4><ul>
+<li>一级无序列表<ul>
+<li>二级无序列表</li>
+</ul>
+</li>
+</ul>
+<h3 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h3><table>
+<thead>
+<tr>
+<th>表头</th>
+<th>表头</th>
+<th>表头</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+</tr>
+</tbody></table>
+<ul>
+<li>-: 设置内容和标题栏居右对齐。</li>
+<li>:- 设置内容和标题栏居左对齐。</li>
+<li>:-: 设置内容和标题栏居中对齐</li>
+</ul>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p><code>code</code></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">code</span><br><span class="line">code </span><br><span class="line">code</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>web</category>
+      </categories>
+      <tags>
+        <tag>笔记</tag>
+      </tags>
+  </entry>
+</search>
