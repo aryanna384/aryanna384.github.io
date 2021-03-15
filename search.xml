@@ -1,6 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>conda_command_not_found</title>
+    <url>/2021/03/15/conda-command-not-found/</url>
+    <content><![CDATA[<h2 id="写在前面虽然本来也不长"><a href="#写在前面虽然本来也不长" class="headerlink" title="写在前面虽然本来也不长"></a>写在前面虽然本来也不长</h2><p>跑网络太慢了找了台服务器新分配用户安装miniconda，怎么安装就不说了，wget 下载，再bash 安装，都是默认安装且默认了inti，完了 conda list 一下提示找不到conda命令，根据目前普遍的解决方法，</p>
+<h2 id="正式开始"><a href="#正式开始" class="headerlink" title="正式开始"></a>正式开始</h2><p><strong>1.添加环境变量</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vim ~/.bashrc</span><br></pre></td></tr></table></figure>
+<p>但是conda初始化的时候已经配置了环境变量了</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">source</span> ~/.bashrc</span><br></pre></td></tr></table></figure>
+<p>source 命令竟然也找不到</p>
+<p><strong>2.查看 /miniconda/bin下是否有 conda</strong><br>有</p>
+<p><strong>3.怀疑是shell 问题</strong><br>这个时候我注意到<code>uparrow不是上一条命令</code>而是<code>^[A</code>(好像，记不得了）<br>就有说用 <code>echo $0</code>  查看当前使用的shell：<br>显示 <code>sh</code><br>于是目前觉得可能就是shell的问题，看了一下之前服务器报错的时候前面都是 <code>bash</code><br>下一步尝试<a href="https://www.cnblogs.com/wwlww/p/8410174.html">把sh切换成bash</a></p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">sudo dpkg<span class="literal">-reconfigure</span> dash</span><br></pre></td></tr></table></figure>
+<p>在弹出的界面里选择<code>否</code><br>但是需要用戶添加進管理員</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">sudo adduser &lt;USR&gt; sudo </span><br></pre></td></tr></table></figure>
+<p>结束之后重新登录一下 ssh，就自动进入 base 环境了</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>为什么我总是遇到奇奇怪怪的 bug<br>另补一下，服务器创建用户之后需要手动添加密码，我以为直接就创建了导致连接输密码一直denied </p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">sudo adduser -m &lt;USR&gt; <span class="comment">#-m在 home 创建用户文件夹</span></span><br><span class="line">sudo passwd &lt;USR&gt;     <span class="comment">#添加密码</span></span><br></pre></td></tr></table></figure>
+<p>我：计算机真奇妙<br>计算机：这个人可能是个傻的</p>
+]]></content>
+      <categories>
+        <category>错误合集</category>
+      </categories>
+      <tags>
+        <tag>debug</tag>
+        <tag>笔记</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hello World</title>
     <url>/2021/02/21/hello-world/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
@@ -23,6 +50,28 @@
 <p><img src="https://image.baidu.com/search/detail?ct=503316480&z=0&tn=baiduimagedetail&ipn=d&cl=2&cm=1&sc=0&lm=-1&ie=gb18030&pn=0&rn=1&di=92290&ln=30&word=%C3%A8&os=3599674941,4174930526&cs=1028905801,1902977906&objurl=http://huafans.dbankcloud.com/pic/2017/01/25/195116eebdd5aa2fdaebff832280a391_IMG_20170125_153017.jpg?mode=download&bdtype=0&simid=3502831365,451049413&pi=0&adpicid=0&timingneed=0&spn=0&is=0,0&fr=ala&ala=1&alatpl=adress&pos=1&oriquery=%E7%8C%AB&hs=2&xthttps=000000" alt="测试网络图片"></p>
 <p><img src="https://blog.csdn.net/mqdxiaoxiao/article/details/96770756" alt="测试图片"></p>
 ]]></content>
+  </entry>
+  <entry>
+    <title>valueError</title>
+    <url>/2021/03/15/valueError/</url>
+    <content><![CDATA[<p>ValueError: Expected more than 1 value per channel when training，got input size…</p>
+<p>在 BatchNorm 的forward地方报错</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ValueError: Expected more than 1 value per channel when training，got input size...</span><br></pre></td></tr></table></figure>
+<p><strong>如果输入是[N,X,1]需要[N,X,1+]</strong></p>
+<p><code>流行解释</code>：训练中用batch训练的时候当前batch恰好只含一个sample，而由于BatchNorm操作需要多于一个数据计算平均值<br><code>普遍解决方法</code>： dataLoader(drop_last=True)</p>
+<p>但是没用，不能改变网络结构，因为在train 的时候没问题<br>检查看到 test 的时候加载的数据是：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">test_seq_input = motion[<span class="number">0</span>, :<span class="number">1</span>, :]</span><br></pre></td></tr></table></figure>
+<p>改成</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">test_seq_input = motion[<span class="number">0</span>, :<span class="number">2</span>, :]</span><br></pre></td></tr></table></figure>
+<p>不报这个问题了</p>
+]]></content>
+      <categories>
+        <category>错误合集</category>
+      </categories>
+      <tags>
+        <tag>debug</tag>
+        <tag>笔记</tag>
+      </tags>
   </entry>
   <entry>
     <title>使用tree命令查看文件夹结构</title>
@@ -131,8 +180,8 @@
         <category>错误合集</category>
       </categories>
       <tags>
-        <tag>笔记</tag>
         <tag>debug</tag>
+        <tag>笔记</tag>
       </tags>
   </entry>
   <entry>
